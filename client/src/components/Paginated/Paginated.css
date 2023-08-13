@@ -1,0 +1,30 @@
+.ul_list {
+    display: inline-block;
+    padding: 0;
+    margin-left: 220px;
+    background-color: #000;
+    border-radius: 3px;
+}
+
+.li_list {
+    display: inline;
+    margin: 0;
+}
+
+.a_list {
+    color: #fff;
+    float: left;
+    margin: 0;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+
+.a_list:hover:not(.active){
+    background-color: #ddd;
+    color: #000;
+}
+.select-page{
+    border: 1px solid #000;
+    color:#000;
+    background-color: antiquewhite;
+}
