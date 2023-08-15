@@ -18,7 +18,7 @@ module.exports = (sequelize) => {
       type: DataTypes.TEXT,
       allowNull: false
     },
-    healthscore:{
+    healthScore:{
       type: DataTypes.INTEGER,
       validate:{
         min: 0,
@@ -31,7 +31,7 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     steps:{
-      type: DataTypes.TEXT,
+      type: DataTypes.ARRAY(DataTypes.TEXT),
       allowNull: false
     }
   },

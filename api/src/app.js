@@ -25,8 +25,8 @@ server.use((req, res, next) => {
 });
 
 
-server.use('/apifood', recipeRouter);
-server.use('/apidiet',  dietRouter)
+server.use('/recipes', recipeRouter);
+server.use('/diets',  dietRouter)
 
 
 // Error catching endware.

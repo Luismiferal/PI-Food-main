@@ -9,11 +9,11 @@ const{ YOUR_API_KEY }= process.env
 
 const postRecipe= async(req, res)=>{
      try {
-        const { name, summary, healthscore, image, steps, Diet } = req.body;
+        const { name, summary, healthScore, image, steps, Diet } = req.body;
         const recipe = await Recipe.create({
             name: name,
             summary: summary,
-            healthscore: healthscore,
+            healthScore: healthScore,
             image: image,
             steps: steps
         });
@@ -30,7 +30,7 @@ const postRecipe= async(req, res)=>{
 const getApi = async ()=>{
   try{
    const InfoApi = await axios.get(
-      `https://api.spoonacular.com/recipes/complexSearch?apiKey=1763ac08417c432690106fbf0662e398&number=100&addRecipeInformation=true`
+      ` https://api.spoonacular.com/recipes/complexSearch?apiKey=1763ac08417c432690106fbf0662e398&number=100&addRecipeInformation=true`
       );
 
       const dataApi = InfoApi.data;
@@ -79,7 +79,7 @@ const getApi = async ()=>{
          steps: i.steps,
          diets: arrDiets,
          image: i.image,
-         createdInDb: i.createdInDb
+        
      }
  })
  return (arrConj)
@@ -93,11 +93,11 @@ const getApi = async ()=>{
 const getDiets = async () =>{
    let diets=["Vegetarian","Lacto-Vegetarian","Ovo-Vegetarian","Vegan","Pescetarian","Paleo","Primal","Low FODMAP","Whole30","Gluten Free","Ketogenic"];
    try {
-       const diet_types= diets.map(async dieta=>{
+       const diet_types= diets.map(async diets=>{
            return await Diet.findOrCreate({
-               where:{name:dieta},
+               where:{name:diets},
                defaults:{
-                   name:dieta
+                   name:diets
                }
            })
        });
@@ -108,19 +108,23 @@ const getDiets = async () =>{
 
 const getById = async (id) =>{
    try{
-       const recipe = await axios.get(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${YOUR_API_KEY}`)
+       const recipe = await axios.get(`https://api.spoonacular.com/recipes/${id}/information?apiKey=96a5d244ece84a8da2ae12c27e293bd1`)
        const dataRecipe = recipe.data;
-       const stepAll = dataRecipe.analyzedInstructions.map(a=>{
-           return a.steps.map(as=>{
-               return(`Step ${as.number}: ${as.step}.`)
-           })
-       });
+    //    const stepAll = dataRecipe.analyzedInstructions.map(a=>{
+    //        return a.steps.map(as=>{
+    //            return(`Step ${as.number}: ${as.step}.`)
+    //        })
+    //    });
        const dataAll ={
            id:dataRecipe.id,
-           name: dataRecipe.title,
+           name: dataRecipe.title.toLowerCase(),
            summary: dataRecipe.summary, //aqui mantener la consulta, puede que haya error en la respuesta de la api
            healthScore: dataRecipe.healthScore,
-           steps: stepAll[0],
+           steps: dataRecipe.analyzedInstructions.map(a=>{
+          return a.steps.map(as=>{
+              return(`Step ${as.number}: ${as.step}.`)
+          })
+      }),
            diets: dataRecipe.diets,
            image: dataRecipe.image,
        }
@@ -140,23 +144,47 @@ const getByIdDb = async(arg)=>{
            name: receta_db.name.toLowerCase(),
            summary: receta_db.summary,
            healthScore:receta_db.healthScore,
-           steps: [receta_db.steps],
+           steps: receta_db.steps.map(ele=>{
+            return ele
+           }),
            image: receta_db.image,
            diets: receta_db.diets.map(el=>{
-               return(el.name)
-           })
-       })
+            return el.name
+       })})
    }catch(error){
        return(Error(error))
    }
    
 }
 
+const getByName = async (name) =>{
+    
+    
+    const allData = await getApi();
+    const nameApi = allData.name.toLowerCase()
+    const allDataByName = {
+        id:allDataallData.id,
+        name: allData.title.toLowerCase(),
+        summary: allData.summary, //aqui mantener la consulta, puede que haya error en la respuesta de la api
+        healthScore: allData.healthScore,
+        steps: allData.steps,
+        diets: allData.diets,
+        image: all.image,
+    }
+    if(nameApi == name.toLowerCase()){
+    return(allDataByName)
+        
+    }else{
+        return(Error(error))
+    }
+
+}
 
 module.exports={
 postRecipe,
 getApi,
 getDiets,
 getById,
+getByName,
 getByIdDb 
 }

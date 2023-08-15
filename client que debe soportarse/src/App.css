@@ -1,0 +1,14 @@
+html,
+body{
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    overscroll-behavior-x:unset;
+    background: url('https://i.pinimg.com/originals/c6/05/92/c605929ee9879faa1bf0a0551915976c.jpg') no-repeat scroll center top #000;
+  
+    background-size: cover;
+    overflow-x:hidden;
+
+
+    
+}
