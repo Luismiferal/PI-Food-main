@@ -1,4 +1,4 @@
-import axios from "axios";
+
 
 const initialState = {
     recipes: [],
@@ -7,11 +7,11 @@ const initialState = {
     recipesFiltered: [],
     detail: [],
     aux:[],
-    favorites:[],
+    
 
 }
 
-function rooReducer (state= initialState, action){
+function rootReducer (state= initialState, action){
     switch(action.type) {
         case 'GET_RECIPES':
             return{
@@ -109,12 +109,7 @@ function rooReducer (state= initialState, action){
             return{
                 ...state,
             }
-        case 'ADD_FAVORITE':
-            const filterFavorite = state.allRecipes.filter(el => el.id === action.payload)
-            return{
-                ...state,
-                favorites:state.favorites.concat(filterFavorite)
-            }
+     
         default: 
          return{
             ...state,
@@ -122,4 +117,4 @@ function rooReducer (state= initialState, action){
     }
 }
 
-export default rooReducer;
+export default rootReducer;

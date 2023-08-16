@@ -24,7 +24,7 @@ export default function CreateRecipe(){
         diet:[],
     });
 
-    function validate(newRecipe){
+    function validate(newrecipe){
         let errors = {};
         if (!input.name.length){
             errors.name = "Tu Receta Necesita Nombre!"
@@ -85,7 +85,7 @@ export default function CreateRecipe(){
             return(alert('Summary required'))
         }
         if(!input.diet.length){
-            return(alert('Your Reipe required Diet'))
+            return(alert('Your Recipe required Diet'))
         }
         if(input.image.length > 255){
             return(alert('Url de image invalid'))
@@ -97,7 +97,7 @@ export default function CreateRecipe(){
             return(alert('Summary very long'))
         }
         if(input.steps.length > 255){
-            return(alert('Steps very long'))
+            return(alert('To much Steps'))
         }
         if(input.healthScore > 100 || input.healthScore < 0){
             return(alert('Health Score invalid'))
@@ -106,14 +106,14 @@ export default function CreateRecipe(){
             input.healthScore = '50'
         }
         if(!input.steps){
-            input.steps = 'your recipe has no steps'
+            input.steps = 'Your recipe has no steps'
         }
         if(!input.image){
-                input.image ='https://bestessayseducation.com/uploads/71/TEXT_HERE.png'
+                input.image = 'Your recipe needs a image'
         }
         else if (!/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#()?&//=]*)/.test(input.image)) {
             return alert("Url imagen invalid");
-            }
+        }
         dispatch(postRecipe(input))
         alert('Recipe Created!!')
         setInput({

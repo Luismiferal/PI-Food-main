@@ -2,7 +2,15 @@ const { Diet } = require('../db.js')
 
 const llenarTiposDiets = async ()=>{
     try {
-        const listaDeDietas =["Vegetarian","Lacto-Vegetarian","Ovo-Vegetarian","Vegan","Pescetarian","Paleo","Primal","Low FODMAP","Whole30","Gluten Free","Ketogenic"]
+        const listaDeDietas =[
+            'gluten free',
+            'lacto ovo vegetarian',
+            'paleolithic',
+            'dairy free',
+            'vegan',
+            'primal',
+            'whole 30',
+            'pescatarian']
         
         listaDeDietas.forEach( async diet=>{
             await Diet.create({

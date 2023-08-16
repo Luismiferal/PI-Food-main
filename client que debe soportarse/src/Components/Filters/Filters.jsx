@@ -50,18 +50,15 @@ export default function Filters(){
                 <h4 className="h4 title-filter">Filters</h4>
                 <h5 className="h4 title-fil">Diets</h5>
                 <select className='select_constiner select' id="diet" onChange={e=>handleFilterDiet(e)}>
-                    <option value='default'>All</option>
-                    <option value= 'Vegetarian' >Vegetarian</option>
-                    <option value='Lacto Vegetarian2'>Lacto Vegetarian</option>
-                    <option value='Ovo Vegetaria3'>Ovo Vegetarian</option>
-                    <option value='Vegan'>Vegan</option>
-                    <option value='Pescetarian'>Pescetarian</option>
-                    <option value='Primal'>Primal</option>
-                    <option value='Paleo'>Paleo</option>
-                    <option value='Low FODMAP'>Low FODMAP</option>
-                    <option value='Whole30'>Whole30</option>
-                    <option value='Gluten Free'>Gluten Free</option>
-                    <option value='Ketogenic'>Ketogenic</option>
+                <option value='default'>All</option>
+                    <option value='gluten free'>Gluten free</option>
+                    <option value='lacto ovo vegetarian'>Lacto ovo vegetarian</option>
+                    <option value='paleolithic'>Paleolithic</option>
+                    <option value='dairy free'>Dairy free</option>
+                    <option value='vegan'>Vegan</option>
+                    <option value='primal'>Primal</option>
+                    <option value='whole 30'>Whole 30</option>
+                    <option value='pescatarian'>Pescatarian</option>
 
                 </select>
                 <h4 className="h4 title-filter">Order</h4>

@@ -8,7 +8,7 @@ export default function Error404(){
             <div className='Landing_Info'>
                 <h1 className='aling-error'>Error: Page Not Found</h1>
                     <Link to='/home'>
-                        <button class="button-error aling-error" role="button">To Return</button>
+                        <button class="button-error aling-error" role="button">Return to previous page</button>
                     </Link>
             </div>
         </div>

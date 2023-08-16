@@ -30,7 +30,7 @@ const postRecipe= async(req, res)=>{
 const getApi = async ()=>{
   try{
    const InfoApi = await axios.get(
-      ` https://api.spoonacular.com/recipes/complexSearch?apiKey=1763ac08417c432690106fbf0662e398&number=100&addRecipeInformation=true`
+      ` https://api.spoonacular.com/recipes/complexSearch?apiKey=96a5d244ece84a8da2ae12c27e293bd1&number=100&addRecipeInformation=true`
       );
 
       const dataApi = InfoApi.data;
@@ -91,7 +91,7 @@ const getApi = async ()=>{
 
 
 const getDiets = async () =>{
-   let diets=["Vegetarian","Lacto-Vegetarian","Ovo-Vegetarian","Vegan","Pescetarian","Paleo","Primal","Low FODMAP","Whole30","Gluten Free","Ketogenic"];
+   let diets=["vegetarian","lacto vegetarian","ovo vegetarian","vegan","pescetarian","paleo","primal","low FODMAP","whole30","gluten free","ketogenic"];
    try {
        const diet_types= diets.map(async diets=>{
            return await Diet.findOrCreate({

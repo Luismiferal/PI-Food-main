@@ -2,7 +2,6 @@ import React from "react";
 import { useDispatch} from "react-redux";
 import { deleteDb, getRecipe } from "../../Actions";
 import { Link} from "react-router-dom";
-// import ButtonDelete from "../button delete/buttonDelete";
 import './Card.scss'
 
 export default function Card({img, name, diets, id, createdInDb, healthScore}){
@@ -15,11 +14,6 @@ export default function Card({img, name, diets, id, createdInDb, healthScore}){
         return alert('Se elimino correctamente')
     }
     
-    // function handlefavorite(e){
-    //         dispatch(addFavorite(id))
-    //         return alert(`Se agrego: ${e}`)
-    // }
-
     const Alldiets= diets.join(', ')
     return(
         <div className='nav_container'>
