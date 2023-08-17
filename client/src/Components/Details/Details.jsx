@@ -37,7 +37,7 @@ export default function Details(){
                             </div>
                             <div id="card-items">
                                 <h3 class="card-item-title">Diets:</h3>
-                                <p>{details.diets.join(' ,')}</p>
+                                <p>{details.diets.join(', ')}</p>
                             </div>
                             <div id="method">
                                 <span class="card-item-title">Steps:</span>

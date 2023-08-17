@@ -5,7 +5,7 @@ const morgan = require('morgan');
 
 const  recipeRouter  = require('./routes/recipeRouter.js')
 const  dietRouter = require('../src/routes/dietRouter.js')
-
+const {routerByName}=require('../src/routes/routeByName.js')
 require('./db.js');
 
 const server = express();
@@ -24,7 +24,7 @@ server.use((req, res, next) => {
   next();
 });
 
-
+server.use('/recipes/name',routerByName )
 server.use('/recipes', recipeRouter);
 server.use('/diets',  dietRouter)
 

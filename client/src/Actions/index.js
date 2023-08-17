@@ -11,6 +11,32 @@ export function getRecipe(){
     }
 };
 
+export function getSearchByName(name){
+    return async function(dispatch){
+        var json = await axios.get(`http://localhost:3001/recipes/name?name=${name}`);
+
+        return dispatch({
+            type: 'GET_RECIPES_BY_NAME',
+            payload: json.data
+        })
+    }
+};
+export function postRecipe(payload){
+    return async function(dispatch){
+        const postAxios = await axios.post('http://localhost:3001/recipes',payload)
+        return postAxios
+    }
+}
+export function detailCard(payload){
+    return async function(dispatch){
+        var json = await axios.get(`http://localhost:3001/recipes/${payload}`);
+
+        return dispatch({
+            type: 'DETAIL_CARD',
+            payload: json.data
+        })
+    }
+}
 
 export function getDiets(){
     return async function(dispatch){
@@ -59,16 +85,6 @@ export function cleanDetail(payload){
     }
 }
 
-export function detailCard(payload){
-    return async function(dispatch){
-        var json = await axios.get(`http://localhost:3001/recipes/${payload}`);
-
-        return dispatch({
-            type: 'DETAIL_CARD',
-            payload: json.data
-        })
-    }
-}
 
 export function searchBar(payload){
     return{
@@ -77,12 +93,6 @@ export function searchBar(payload){
     }
 };
 
-export function postRecipe(payload){
-    return async function(dispatch){
-        const postAxios = await axios.post('http://localhost:3001/recipes',payload)
-        return postAxios
-    }
-}
 
 export function deleteDb(payload){
     return async function(dispatch){
@@ -100,4 +110,3 @@ export function addFavorite(payload){
         payload: payload,
     }
 }
-

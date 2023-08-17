@@ -30,7 +30,7 @@ const postRecipe= async(req, res)=>{
 const getApi = async ()=>{
   try{
    const InfoApi = await axios.get(
-      ` https://api.spoonacular.com/recipes/complexSearch?apiKey=96a5d244ece84a8da2ae12c27e293bd1&number=100&addRecipeInformation=true`
+      `https://api.spoonacular.com/recipes/complexSearch?apiKey=b161fd235ba84ca6939fa0451c8f66eb&number=100&addRecipeInformation=true`
       );
 
       const dataApi = InfoApi.data;
@@ -163,7 +163,7 @@ const getByName = async (name) =>{
     const allData = await getApi();
     const nameApi = allData.name.toLowerCase()
     const allDataByName = {
-        id:allDataallData.id,
+        id:allData.id,
         name: allData.title.toLowerCase(),
         summary: allData.summary, //aqui mantener la consulta, puede que haya error en la respuesta de la api
         healthScore: allData.healthScore,

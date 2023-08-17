@@ -7,15 +7,20 @@ import Card from './Components/Card/Card';
 import Details from './Components/Details/Details';
 import Error404 from './Components/Error 404/Error404';
 import LoadingPage from './Components/LoadingPage/LoadingPage';
-
-
-
-//pruebas
 import Filters from './Components/Filters/Filters';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { getDiets } from './Actions';
+
 
 
 
 function App() {
+
+  const dispatch = useDispatch()
+  useEffect(()=>{
+    dispatch(getDiets())
+  },[])
   return (
     <BrowserRouter>
       <div className="App">

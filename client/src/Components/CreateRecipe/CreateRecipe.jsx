@@ -7,11 +7,14 @@ import { getDiets, postRecipe } from "../../Actions";
 
 
 
+
 export default function CreateRecipe(){
-    
+    const allDiets = useSelector((state)=> state.Diets);
+    const [checkDiet, setCheckDiet] = useState( 
+        new Array(allDiets.length).fill(false)
+        ) 
     const dispatch = useDispatch();
     const history = useHistory();
-    const allDiets = useSelector((state)=> state.Diets);
     
     
     const [errors, setErrors] = useState({});
@@ -24,11 +27,22 @@ export default function CreateRecipe(){
         diet:[],
     });
 
+
+
+    const checkboxDiet=(e)=>{
+        const id = e.target.id-1;
+        const upDateCheckDiet = checkDiet.map((dt, index)=>
+            index === id ? !dt : dt
+        )
+
+        setCheckDiet(upDateCheckDiet)
+    }
+
     function validate(newrecipe){
         let errors = {};
         if (!input.name.length){
             errors.name = "Tu Receta Necesita Nombre!"
-        } else if (!input.diet.length){
+        } else if (!checkDiet.includes(true)){
             errors.diet = "Tu receta necesita dieta"
         }else if (!input.summary){
             errors.summary = "Tu Receta necesita un Resumen!"
@@ -56,27 +70,29 @@ export default function CreateRecipe(){
         
     };
 
-    function handleCheck(e){
-        if(e.target.checked){
-            setInput({
-                ...input,
-                diet: [...input.diet, e.target.value]
-            })
-            setErrors(validate({
-                ...input,
-                diet: [...input.diet, e.target.value]
-            }))
+    // function handleCheck(e){
+    //     if(e.target.checked){
+    //         setInput({
+    //             ...input,
+    //             diet: [...input.diet, e.target.value]
+    //         })
+    //         setErrors(validate({
+    //             ...input,
+    //             diet: [...input.diet, e.target.value]
+    //         }))
             
-        }
-        if(!e.target.checked){
-            setInput({
-                ...input,
-                diet: input.diet.filter(el=> el !== e.target.value)
-            })
-        }
-    };
+    //     }
+    //     if(!e.target.checked){
+    //         setInput({
+    //             ...input,
+    //             diet: input.diet.filter(el=> el !== e.target.value)
+    //         })
+    //     }
+    // };
 
     function handleSubmit(e){
+
+        e.preventDefault();
         if(!input.name){
             alert('Nombre required')
             return(false)
@@ -84,7 +100,7 @@ export default function CreateRecipe(){
         if(!input.summary){
             return(alert('Summary required'))
         }
-        if(!input.diet.length){
+        if(!checkDiet.includes(true)){
             return(alert('Your Recipe required Diet'))
         }
         if(input.image.length > 255){
@@ -114,7 +130,19 @@ export default function CreateRecipe(){
         else if (!/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#()?&//=]*)/.test(input.image)) {
             return alert("Url imagen invalid");
         }
-        dispatch(postRecipe(input))
+        const data = input
+        const DietsHandler = []
+        for (let i = 0; i < checkDiet.length; i++) {
+            if(checkDiet[i]){
+                DietsHandler.push(i+1)
+            }
+            
+        }
+        data.diet = DietsHandler
+        data.healthScore= parseInt(data.healthScore)
+        data.steps = [data.steps]
+
+        dispatch(postRecipe(data))
         alert('Recipe Created!!')
         setInput({
             name:"",
@@ -122,23 +150,25 @@ export default function CreateRecipe(){
             healthScore:0,
             steps:[],
             image:"",
-            diets:[]
+            diet:[]
         })
         history.push('/home')
+      
     };
 
 
     useEffect(()=>{
-        dispatch(getDiets())
-    },[dispatch]);
+        
+       
+    },[]);
 
-    const selecDiet = input.diet.join(' ,')
+    const selecDiet = input.diet.join('')
 
     return(
         <div className="form__container">
             <div className="div__constiner">
             <Nav/>
-                <form onSubmit={(e) => handleSubmit(e)} className='form'>
+                <form onSubmit={handleSubmit} className='form'>
                     <h1 className="title">Create Your Recipe</h1>
                     <div>
                         <div>
@@ -150,8 +180,8 @@ export default function CreateRecipe(){
                             <h3 className="label_cont dieta">Diets:</h3>
                             {allDiets.map(el=>{
                                 return(
-                                    <label className="checkbox">
-                                        <input type='checkbox' name={el.name} value={el.name} onChange={(e) => handleCheck(e)} onPaste={(e) => handleCheck(e)}/>
+                                    <label className="checkbox"  key={el.id}>
+                                        <input type='checkbox' id={el.id} name={el.name} value={el.name} onChange={checkboxDiet}/>
                                         {el.name}
                                     </label>
                                 )

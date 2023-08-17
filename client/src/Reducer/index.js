@@ -20,17 +20,24 @@ function rootReducer (state= initialState, action){
                 allRecipes: action.payload,
                 recipesFiltered: action.payload,
             }
+        case 'GET_RECIPES_BY_NAME':
+            return{
+                    ...state,
+                    recipes: action.payload,
+                    allRecipes: action.payload,
+                    recipesFiltered: action.payload,
+                }
 
         case 'GET_DIETS':
             return{
                 ...state,
                 Diets: action.payload
             }
-        case 'CLEAN_RECIPE':
-            return{
-                ...state,
-                recipes: {},
-            }
+            case 'POST_RECIPE':
+                return{
+                    ...state,
+                }
+        
         case 'FILTER_BY_DIET':
             const allRecipe = state.allRecipes;
             const statusFilter =  allRecipe.filter(el => el.diets.includes(action.payload))
@@ -100,10 +107,12 @@ function rootReducer (state= initialState, action){
                 ...state,
                 recipes:state.recipes.concat(action.payload)
             }
-        case 'POST_RECIPE':
-            return{
-                ...state,
-            }
+            case 'CLEAN_RECIPE':
+                return{
+                    ...state,
+                    recipes: {},
+                }
+        
         case 'DELETE_RECIPE':
             
             return{
