@@ -3,13 +3,13 @@ import { Link , useHistory} from "react-router-dom";
 import { useDispatch , useSelector } from "react-redux";
 import Nav from '../Nav 2/Nav';
 import './CreateRecipe.scss';
-import { getDiets, postRecipe } from "../../Actions";
+import { postRecipe } from "../../Actions";
 
 
 
 
 export default function CreateRecipe(){
-    const allDiets = useSelector((state)=> state.Diets);
+    const allDiets = useSelector((state)=> state.diets);
     const [checkDiet, setCheckDiet] = useState( 
         new Array(allDiets.length).fill(false)
         ) 
@@ -24,12 +24,12 @@ export default function CreateRecipe(){
         healthScore:0,
         steps:[],
         image:"",
-        diet:[],
+        diets:[],
     });
 
 
 
-    const checkboxDiet=(e)=>{
+    const checkboxDiet = (e)=>{
         const id = e.target.id-1;
         const upDateCheckDiet = checkDiet.map((dt, index)=>
             index === id ? !dt : dt
@@ -43,7 +43,7 @@ export default function CreateRecipe(){
         if (!input.name.length){
             errors.name = "Tu Receta Necesita Nombre!"
         } else if (!checkDiet.includes(true)){
-            errors.diet = "Tu receta necesita dieta"
+            errors.Diets = "Tu receta necesita dieta"
         }else if (!input.summary){
             errors.summary = "Tu Receta necesita un Resumen!"
         } else if(input.image.length > 255){
@@ -138,7 +138,7 @@ export default function CreateRecipe(){
             }
             
         }
-        data.diet = DietsHandler
+        data.diets = DietsHandler
         data.healthScore= parseInt(data.healthScore)
         data.steps = [data.steps]
 
@@ -150,7 +150,7 @@ export default function CreateRecipe(){
             healthScore:0,
             steps:[],
             image:"",
-            diet:[]
+            diets:[]
         })
         history.push('/home')
       
@@ -162,7 +162,7 @@ export default function CreateRecipe(){
        
     },[]);
 
-    const selecDiet = input.diet.join('')
+    const selecDiet = input.diets.join(',')
 
     return(
         <div className="form__container">
@@ -181,12 +181,12 @@ export default function CreateRecipe(){
                             {allDiets.map(el=>{
                                 return(
                                     <label className="checkbox"  key={el.id}>
-                                        <input type='checkbox' id={el.id} name={el.name} value={el.name} onChange={checkboxDiet}/>
-                                        {el.name}
+                                        <input type='checkbox' id={el.id} name={el.name} value={el.id} onChange={checkboxDiet}/>
+                                        {el.id}
                                     </label>
                                 )
                             })}
-                            {errors.diet && (<p className="error">{errors.diet}</p>)}
+                            {errors.diets && (<p className="error">{errors.diets}</p>)}
                             {
                                 selecDiet && <p className="select-diets">{selecDiet}</p>
                             }

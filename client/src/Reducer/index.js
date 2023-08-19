@@ -20,18 +20,12 @@ function rootReducer (state= initialState, action){
                 allRecipes: action.payload,
                 recipesFiltered: action.payload,
             }
-        case 'GET_RECIPES_BY_NAME':
-            return{
-                    ...state,
-                    recipes: action.payload,
-                    allRecipes: action.payload,
-                    recipesFiltered: action.payload,
-                }
+    
 
         case 'GET_DIETS':
             return{
                 ...state,
-                Diets: action.payload
+                diets: action.payload
             }
             case 'POST_RECIPE':
                 return{

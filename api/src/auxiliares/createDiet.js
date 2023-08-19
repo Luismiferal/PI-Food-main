@@ -12,9 +12,9 @@ const llenarTiposDiets = async ()=>{
             'whole 30',
             'pescatarian']
         
-        listaDeDietas.forEach( async diet=>{
+        listaDeDietas.forEach( async diets=>{
             await Diet.create({
-                name: diet,
+                name: diets,
 
             });
         })

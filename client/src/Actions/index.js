@@ -11,16 +11,6 @@ export function getRecipe(){
     }
 };
 
-export function getSearchByName(name){
-    return async function(dispatch){
-        var json = await axios.get(`http://localhost:3001/recipes/name?name=${name}`);
-
-        return dispatch({
-            type: 'GET_RECIPES_BY_NAME',
-            payload: json.data
-        })
-    }
-};
 export function postRecipe(payload){
     return async function(dispatch){
         const postAxios = await axios.post('http://localhost:3001/recipes',payload)
@@ -29,14 +19,25 @@ export function postRecipe(payload){
 }
 export function detailCard(payload){
     return async function(dispatch){
+        if(!isNaN(payload)){
+            console.log('es un número')
         var json = await axios.get(`http://localhost:3001/recipes/${payload}`);
 
         return dispatch({
             type: 'DETAIL_CARD',
             payload: json.data
         })
+        }else{
+        var jsonW = await axios.get(`http://localhost:3001/recipes/name?name=${payload}`);
+
+        return dispatch({
+            type: 'DETAIL_CARD',
+            payload: jsonW.data[0]})
+        }
+        }
+        
     }
-}
+
 
 export function getDiets(){
     return async function(dispatch){
