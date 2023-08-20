@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { postRecipe, getApi, getById, getByName, getByIdDb }= require('../controllers/recipes.js')
+const { postRecipe, getApi, getById, getByIdDb }= require('../controllers/recipes.js')
 
 const recipeRouter = Router();
 
@@ -18,22 +18,17 @@ recipeRouter.get('/:id', async (req, res) =>{
 recipeRouter.get('/',async  (req, res)=>{
     const {name} = req.query
         try{
-            if(name){
-
-                const info = await getByName(name);
-                res.status(200).send(info)
-
-            }else {
+            
                 const info = await getApi();
                 res.status(200).send(info)
                 
             }
            
-        }catch(error){
+        catch(error){
             res.status(404).send(error)
         }
+    
     })
-
 
 
 module.exports = recipeRouter;

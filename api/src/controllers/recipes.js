@@ -9,7 +9,8 @@ const{ YOUR_API_KEY }= process.env
 
 const postRecipe= async(req, res)=>{
      try {
-        const { name, summary, healthScore, image, steps, Diet } = req.body;
+        const { name, summary, healthScore, image, steps, diets } = req.body;
+        const Diet = diets
         const recipe = await Recipe.create({
             name: name,
             summary: summary,
@@ -157,34 +158,12 @@ const getByIdDb = async(arg)=>{
    
 }
 
-const getByName = async (name) =>{
-    
-    
-    const allData = await getApi();
-    const nameApi = allData.name.toLowerCase()
-    const allDataByName = {
-        id:allData.id,
-        name: allData.title.toLowerCase(),
-        summary: allData.summary, //aqui mantener la consulta, puede que haya error en la respuesta de la api
-        healthScore: allData.healthScore,
-        steps: allData.steps,
-        diets: allData.diets,
-        image: all.image,
-    }
-    if(nameApi == name.toLowerCase()){
-    return(allDataByName)
-        
-    }else{
-        return(Error(error))
-    }
 
-}
 
 module.exports={
 postRecipe,
 getApi,
 getDiets,
 getById,
-getByName,
 getByIdDb 
 }
