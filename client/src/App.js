@@ -33,7 +33,6 @@ function App() {
           <Route exact path='/recipes/:id' component={Details}/>
           <Route exact path='/loading' component={LoadingPage}/>
           <Route path='*' component={Error404}/>
-          {/* <Route path='/recipes/name?' component={}/> */}
         </Switch>
       </div>
     </BrowserRouter>

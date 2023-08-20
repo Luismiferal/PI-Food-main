@@ -9,8 +9,12 @@ export default function Nav(){
         <div className="Nav_Container">
             <h1 className="Nav_Title">PROYECTO INDIVIDUAL FOOD DE SOY HENRY</h1>
             <Link to='/CreateRecipe'>
-                <button class="button-Nav" role="button">Create Recipe</button>
+                <button class="button-Nav" >Create Recipe</button>
             </Link>
         </div>
-    )
+ 
+ )
 }
+
+
+// role="button"

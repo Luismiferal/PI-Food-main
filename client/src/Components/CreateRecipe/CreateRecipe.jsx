@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link , useHistory} from "react-router-dom";
+import { useHistory} from "react-router-dom";
 import { useDispatch , useSelector } from "react-redux";
 import Nav from '../Nav 2/Nav';
 import './CreateRecipe.scss';
@@ -70,25 +70,6 @@ export default function CreateRecipe(){
         
     };
 
-    // function handleCheck(e){
-    //     if(e.target.checked){
-    //         setInput({
-    //             ...input,
-    //             diet: [...input.diet, e.target.value]
-    //         })
-    //         setErrors(validate({
-    //             ...input,
-    //             diet: [...input.diet, e.target.value]
-    //         }))
-            
-    //     }
-    //     if(!e.target.checked){
-    //         setInput({
-    //             ...input,
-    //             diet: input.diet.filter(el=> el !== e.target.value)
-    //         })
-    //     }
-    // };
 
     function handleSubmit(e){
 
@@ -150,7 +131,7 @@ export default function CreateRecipe(){
             healthScore:0,
             steps:[],
             image:"",
-            diets:[]
+            diets:""
         })
         history.push('/home')
       
@@ -182,7 +163,7 @@ export default function CreateRecipe(){
                                 return(
                                     <label className="checkbox"  key={el.id}>
                                         <input type='checkbox' id={el.id} name={el.name} value={el.id} onChange={checkboxDiet}/>
-                                        {el.id}
+                                        {el.name}
                                     </label>
                                 )
                             })}

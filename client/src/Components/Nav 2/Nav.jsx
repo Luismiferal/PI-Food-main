@@ -8,8 +8,10 @@ export default function Nav(){
         <div className="Nav_Container">
             <h1 className="Nav_Title">PROYECTO INDIVIDUAL DE SOY HENRY</h1>
             <Link to='/home'>
-                <button class="button-Nav" role="button">Home</button>
+                <button class="button-Nav">Home</button>
             </Link>
         </div>
     )
 }
+
+// role="button"

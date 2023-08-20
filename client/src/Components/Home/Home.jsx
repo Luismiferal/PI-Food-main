@@ -1,8 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { getRecipe} from "../../Actions"; //, cleanRecipe, getDiets, addFavorite 
-// import { Link } from 'react-router-dom';
+import { getRecipe} from "../../Actions"; 
 import Nav from '../Nav/Nav';
 import Card from "../Card/Card";
 import './Home.scss'
@@ -15,7 +14,7 @@ export default function Home(){
     const allRecipes = useSelector((state)=> state.recipes);
 
     const [currentPage, setCurrentPage] = useState(1);
-    const [recipesPerPage] = useState(9); //setRecipesPerPage
+    const [recipesPerPage] = useState(9); 
     const indexOfLastRecipes = currentPage * recipesPerPage;
     const indexOfFirstRecipes = indexOfLastRecipes - recipesPerPage;
 

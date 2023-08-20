@@ -1,4 +1,5 @@
 import axios from 'axios';
+import validator from 'validator'
 
 export function getRecipe(){
     return async function(dispatch){
@@ -12,7 +13,7 @@ export function getRecipe(){
 };
 
 export function postRecipe(payload){
-    return async function(dispatch){
+    return async function(){
         const postAxios = await axios.post('http://localhost:3001/recipes',payload)
         return postAxios
     }
@@ -20,12 +21,21 @@ export function postRecipe(payload){
 export function detailCard(payload){
     return async function(dispatch){
         if(!isNaN(payload)){
-            console.log('es un número')
+            
         var json = await axios.get(`http://localhost:3001/recipes/${payload}`);
 
         return dispatch({
             type: 'DETAIL_CARD',
             payload: json.data
+        })
+        }else if(validator.isUUID(payload) === true){
+
+            
+        var jsonV = await axios.get(`http://localhost:3001/recipes/${payload}`);
+
+        return dispatch({
+            type: 'DETAIL_CARD',
+            payload: jsonV.data
         })
         }else{
         var jsonW = await axios.get(`http://localhost:3001/recipes/name?name=${payload}`);
