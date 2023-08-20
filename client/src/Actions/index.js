@@ -121,3 +121,4 @@ export function addFavorite(payload){
         payload: payload,
     }
 }
+//acomodar acá algunas funciones no activas(prescindibles)
