@@ -2,13 +2,13 @@ body{
     overflow-x: hidden;
  }
 .nav_container{
-    border: solid 2px #000;
+    border: solid 2px #9c9090;
     position: relative;
     align-items: center;
     border-radius: 5px;
     height: 400px;
     width: 280px;
-    background-color: rgba(0, 0, 0, 0.9);
+    background-color: rgba(94, 34, 34, 0.9);
 }
 .diets{
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -69,7 +69,7 @@ body{
     right: 0;
     left: 0;
   align-items: center;
-  background-color: rgba(155, 155, 155, 0.7);
+  background-color: rgba(174, 24, 24, 0.7);
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
   color: #000;
@@ -98,8 +98,8 @@ body{
 }
 
 .button-more:hover {
-  color: #666;
-  background-color: rgba(0, 0, 0, 0.5);
+  color: #ffffff;
+  background-color: rgba(102, 3, 3, 0.885);
 }
 
 .button-more:active {

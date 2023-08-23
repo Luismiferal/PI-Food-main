@@ -31,7 +31,7 @@ export default function Card({img, name, diets, id, createdInDb, healthScore}){
             <h3 className="diets"> {Alldiets}</h3>
             </div>
             <h6 className="diets">{healthScore}</h6>
-            {/* <button onClick={e=> handlefavorite(name)}>Agregar Fav</button> */}
+
             <Link to={`/recipes/${id}`}>
                 <button class="button-more" role="button">More Details</button>
             </Link>
